@@ -16,12 +16,17 @@
   <script type="text/javascript">
 
     var win=0;
-    var tie=0;
-    var loss=0;
-    var totScore=0;
+    
+    
+
+    var RemGuess = 15;
+
+    
 
     // Creates an array that lists out all of the options (Rock, Paper, or Scissors).
-    var compChoices = ["r", "p", "s"];
+    //var compChoices = ["r", "p", "s"];
+
+    //document.write("Press any key to get started");
 
     // This function is run whenever the user presses a key.
     document.onkeyup = function(event) {
@@ -35,42 +40,34 @@
 
       {
 
-      // Randomly chooses a choice from the options array. This is the Computer's guess.
-      var compGuess = compChoices[Math.floor(Math.random() * compChoices.length)];
-
-      
-      if (userGuess==="r" && compGuess==="r") {tie++};
-      if (userGuess==="r" && compGuess==="p") {loss++};
-      if (userGuess==="r" && compGuess==="s") {win++};
-
-      if (userGuess==="p" && compGuess==="r") {win++};
-      if (userGuess==="p" && compGuess==="p") {tie++};
-      if (userGuess==="p" && compGuess==="s") {loss++};
-
-      if (userGuess==="s" && compGuess==="r") {loss++};
-      if (userGuess==="s" && compGuess==="p") {win++};
-      if (userGuess==="s" && compGuess==="s") {tie++};
-
       // Alerts the key the user pressed (userGuess).
-      alert("User guess: " + userGuess);
+      document.write("User guessed: " + userGuess +".   ");
 
-      // Alerts the Computer's guess.
-      alert("Computer guess: " + compGuess);
+      document.write("Remaining guesses: " + RemGuess);
 
-      totScore=win*1+tie*0+loss*(-1);
+    
 
       console.log("User guessed "+ userGuess);
-      console.log("Computer guessed "+ compGuess);
-      console.log("win = " + win);
-      console.log("tie = " + tie); 
-      console.log("loss = " + loss);     
-      console.log("My Score = " + totScore);
+
+      console.log("Remaining guesses: " + RemGuess);
+      
       
       }
+      
       else {
 
-      console.log("Please enter letters: r or p or s");
+      RemGuess=RemGuess-1;
+
+      document.write("User guessed: " + userGuess +".   ");
+
+      document.write("Remaining guesses: " + RemGuess);
+
+
+      console.log("User guessed "+ userGuess);
+
+      console.log("Remaining guesses: "+ RemGuess);
       }
+ 
 
     };
 
