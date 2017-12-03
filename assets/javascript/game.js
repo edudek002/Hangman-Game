@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html lang="en-us">
 
-<head>
-  <meta charset="UTF-8">
-  <title>Rock Paper Scissors Part 2
-  </title>
-</head>
-
-<body>
-
-  <div id="game">
-
-  </div>
 
   <script type="text/javascript">
 
@@ -76,6 +63,4 @@
 
   </script>
 
-</body>
 
-</html>
