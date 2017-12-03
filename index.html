@@ -61,39 +61,66 @@
 
               <h5 class="card-title text-center custom_border">This is a game</h5>
 
-
-            <div class="row justify-content-center">
-
-              <p class="card-text">Press any key to get started</p>
-
-            </div>
-
-            <div class="row justify-content-center">
-
-              <br>
-
-              <p class="card-text">Remaining guesses on the right: </p>
-
-            </div>
-
-            <div id="game"></div>
-
-            <div id=“notification”></div>
-
-            <div id="incLetters"></div>
+          
 
 
-            <div id="corLetters"></div>
+                <div class="row justify-content-center">
 
-            <p id="demo"></p>
+                  <p class="card-text">Press any key to get started</p>
+                  <br>
+                  <br>
+
+                </div>
+
+
+                <div class="row justify-content-center" >
+
+                  <div class="col-md-6">
+                    <p class="card-text">Remaining guesses: </p> 
+                  </div>
+
+                  <div id="demo" > 
+                    <br>
+                  </div>    
+
+                </div>
+
+                <div class="row justify-content-center" >
+
+                  <div class="col-md-6">
+                    <p class="card-text">Incorrect Letters: </p> 
+                  </div>
+
+                  <div id="incLetters">
+                    <br>
+                  </div>
+
+                </div>
+
+                <div class="row justify-content-center" >
+
+                  <div class="col-md-6">
+                    <p class="card-text">Correct Letters: </p> 
+                  </div>
+
+                  <div id="corLetters">
+                    <br>
+                  </div>
+
+                </div>
+
+
+                <!--<div id=“notification”></div>-->
+            
 
           </div>
 
         </div>
 
+    </div>
 
+  </div>
 
-  </div>  
 
 
 
@@ -102,8 +129,6 @@
 <script type="text/javascript">
 
     
-
-
 
     var win=0;
     
@@ -114,6 +139,8 @@
     var wrongLetters = [];
 
     var wrong = document.getElementById("incLetters");
+
+    var correct = document.getElementById("corLetters")
 
     
 
@@ -139,15 +166,15 @@
 
       var drinkList2 = [
       "a","b"
-    ];
+      ];
     
-    var drinkDiv = document.getElementById("demo");
+      var drinkDiv = document.getElementById("demo");
 
 
     //List of available letters for the User
 
 
-    var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", 
+      var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", 
         "v", "w", "x", "y", "z"];
 
 
@@ -163,6 +190,8 @@
       if (drinkList.indexOf(userGuess) <=-1 ) {
 
         wrongLetters.push(userGuess);
+
+        document.getElementById("demo").innerHTML = RemGuess;
 
         document.getElementById("incLetters").innerHTML = wrongLetters.join("");
       }
@@ -185,7 +214,7 @@
 
       
 
-      if (drinkList[i] ===userGuess) {
+      /*if (drinkList[i] ===userGuess) {
 
         lettersGuessed[i]=userGuess ;
 
@@ -195,13 +224,11 @@
 
         console.log("lettersGuessed: " + lettersGuessed);
 
-        document.getElementById("corLetters").innerHTML = lettersGuessed.join("");
+        document.getElementById("corLetters").innerHTML = lettersGuessed;
 
-      }
+      }*/
 
       
-
-
 
      
 
@@ -210,7 +237,6 @@
        //document.querySelector(“#notification”).innerHTML = str;
       //}
 
-    
 
 
       //lettersGuessed.push(userGuess);
@@ -221,6 +247,8 @@
 
       {
 
+      lettersGuessed.push(userGuess);
+
       // Alerts the key the user pressed (userGuess).
       //document.write("User guessed: " + userGuess +".   ");
 
@@ -228,9 +256,13 @@
 
       document.getElementById("demo").innerHTML = RemGuess;
 
+      document.getElementById("corLetters").innerHTML = lettersGuessed.join("");
+
       //document.getElementById("demo").innerHTML= drinkList[i];
 
-      lettersGuessed = userGuess;
+      //lettersGuessed = userGuess;
+
+      console.log("lettersGuessed: " + lettersGuessed);
 
       console.log("User guessed right");
 
