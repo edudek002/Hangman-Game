@@ -5,48 +5,170 @@
   <meta charset="UTF-8">
   <title>Hangman
   </title>
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 
 <body>
 
-          <p>
-            Boo the dog belongs to a San Francisco-based ebook employee who created a Facebook page for the dog with a statement "My name is Boo. I am a dog. Life is good." He became popular in October 2010 after singer Ke$ha sent a tweet that she had a new boyfriend, linking to the page.
-          </p>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-
-  <div id="game">
-
-  </div>
-
-
-  <p>My First Paragraph.</p>
-
-  <p>Remaining guesses: <p>
 
 
 
-  <p id="demo"></p>
+  <div class="container">
+
+      <div class="row"> 
+
+        <!-- Main Section-->
+
+        <div class="col-md-6">     
+
+          <div class="card border-info mb-3">
+
+            <div class="card-body">
+
+              <h3 class="card-title custom_border">About Me</h3>
+
+              <br>
+
+              
+              <br>
+              <br>
+              
+
+              <p class="card-text">I like traveling in the United States and in Europe. I particulary enjoy hiking in the mountains. Last summer I trekked tour du Mont Blanc, covering a distance of about 170km, including 10km of ascent and descent. In the winter I enjoy downhill skiing in various areas in Colorado, Utah, British Columbia and the Alps.</p>
+
+              
+                
+              
+            </div>
+          </div>
+        </div>
+
+    
+
+
+
+      
+        
+        <div class="col-md-6"> 
+
+          <div class="card card-body border-info mb-3">
+
+              <h5 class="card-title text-center custom_border">This is a game</h5>
+
+
+            <div class="row justify-content-center">
+
+              <p class="card-text">Press any key to get started</p>
+
+            </div>
+
+            <div class="row justify-content-center">
+
+              <br>
+
+              <p class="card-text">Remaining guesses on the right: </p>
+
+            </div>
+
+            <div id="game"></div>
+
+            <div id=“notification”></div>
+
+            <div id="incLetters"></div>
+
+
+            <div id="corLetters"></div>
+
+            <p id="demo"></p>
+
+          </div>
+
+        </div>
+
+
+
+  </div>  
+
+
+
 
 
 <script type="text/javascript">
 
-    var drinkList = [
-      "A",
-      "B",
-    ];
+    
+
+
+
+    var win=0;
+    
+    var RemGuess = 15;
+
+    var lettersGuessed =[];
+
+    var wrongLetters = [];
+
+    var wrong = document.getElementById("incLetters");
 
     
-    var drinkDiv = document.getElementById("demo");
+
+      // This function is run whenever the user presses a key.
+      document.onkeyup = function(event) {
+
     
+
+      // Determines which key was pressed.
+      var userGuess = event.key.toLowerCase();
+
+      console.log("Letters guessed :" + userGuess);
+
+      RemGuess=RemGuess-1;
+
+      console.log("Remaining guesses: "+ RemGuess);
+
+      var drinkList = [
+      "b","e","y","o","n","c","e"
+      ];
+
+      alert (drinkList[1]);
+
+      var drinkList2 = [
+      "a","b"
+    ];
+    
+    var drinkDiv = document.getElementById("demo");
+
+
+    //List of available letters for the User
+
+
+    var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", 
+        "v", "w", "x", "y", "z"];
+
+
+     if (alphabet.indexOf(userGuess) <=-1 ) {
+
+        alert("you suck");
+      }
+
+
+      //The wrong letters are stored in array: wrongLetters
+
+
+      if (drinkList.indexOf(userGuess) <=-1 ) {
+
+        wrongLetters.push(userGuess);
+
+        document.getElementById("incLetters").innerHTML = wrongLetters.join("");
+      }
+    
+
+    /*
     
     for (var i = 0; i < drinkList.length; i++) {
 
@@ -57,46 +179,45 @@
 
       drinkDiv.appendChild(newDrink);
 
-    }
+      }*/
+
+      //The correct letters are stored in letters Guessed
+
+      
+
+      if (drinkList[i] ===userGuess) {
+
+        lettersGuessed[i]=userGuess ;
+
+        //lettersGuessed.push(userGuess);
+
+        //current.innerHTML = lettersGuessed.join(" ");
+
+        console.log("lettersGuessed: " + lettersGuessed);
+
+        document.getElementById("corLetters").innerHTML = lettersGuessed.join("");
+
+      }
+
+      
 
 
 
+     
 
+    /* function notify(str) {*/
 
+       //document.querySelector(“#notification”).innerHTML = str;
+      //}
 
-    var win=0;
     
-    var RemGuess = 15;
-
-    var lettersGuessed =[];
-
-    
-
-      // Creates an array that lists out all of the options 
-
-      document.write("Press any key to get started");
-
-
-
-      // This function is run whenever the user presses a key.
-      document.onkeyup = function(event) {
-
-    
-
-      // Determines which key was pressed.
-      var userGuess = event.key.toLowerCase();
-
-
-      console.log("Letters guessed :" + userGuess);
-
-      RemGuess=RemGuess-1;
-
-      console.log("Remaining guesses: "+ RemGuess);
 
 
       //lettersGuessed.push(userGuess);
 
-      if (userGuess==="b" || userGuess==="e"|| userGuess==="y" || userGuess==="o" || userGuess==="n"|| userGuess==="c" )
+      for (var i = 0; i < drinkList.length; i++)
+
+      if (userGuess===drinkList[i])
 
       {
 
@@ -107,7 +228,7 @@
 
       document.getElementById("demo").innerHTML = RemGuess;
 
-      win++;
+      //document.getElementById("demo").innerHTML= drinkList[i];
 
       lettersGuessed = userGuess;
 
@@ -118,20 +239,21 @@
       
       }
       
-      else {
+      else 
 
+      {
+        
 
-      //document.write("User guessed: " + userGuess +".   ");
+        //alert("Incorrect letter");
 
-      //document.write("Remaining guesses: " + RemGuess);
+      
 
-
-      console.log("User guessed wrong");
+        console.log("User guessed wrong");
 
       }
- 
 
-    };
+ 
+  };
 
     
 
