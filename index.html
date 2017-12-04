@@ -33,14 +33,7 @@
 
               <h3 class="card-title custom_border">About Me</h3>
 
-              <br>
-
-              
-              <br>
-              <br>
-              
-
-              <p class="card-text">I like traveling in the United States and in Europe. I particulary enjoy hiking in the mountains. Last summer I trekked tour du Mont Blanc, covering a distance of about 170km, including 10km of ascent and descent. In the winter I enjoy downhill skiing in various areas in Colorado, Utah, British Columbia and the Alps.</p>
+              <p class="card-text">I like traveling in the United States and in Europe. </p>
    
               
             </div>
@@ -67,14 +60,14 @@
 
               <div class="col-md-6">
                 <br>
-                <p class="card-text">Letters guessed correctly </p>
-                <br>
+                <p class="card-text">Letters guessed correctly: </p>
+                
               </div>
 
               <div class="col-md-6">
                 <br>
                 <div id="corLetters"></div>
-                <br>
+                
               </div>
 
             </div>
@@ -84,13 +77,13 @@
               <div class="col-md-6">
                 <br>
                 <p class="card-text">Dashes</p>
-                <br>
+                
               </div>
 
               <div class="col-md-6">
                 <br>
                 <div id="numChar"></div>
-                <br>
+                
               </div>
 
             </div>
@@ -100,14 +93,14 @@
 
               <div class="col-md-6">
                 <br>
-                <p class="card-text">Remaining guesses on the right: </p>
-                <br>
+                <p class="card-text">Remaining guesses: </p>
+                
               </div>
 
               <div class="col-md-6">
                 <br>
                 <div id="demo"></div>
-                <br>
+                
               </div>
 
             </div>
@@ -116,14 +109,14 @@
 
               <div class="col-md-6">
                 <br>
-                <p class="card-text">Letters guessed incorrectly </p>
-                <br>
+                <p class="card-text">Letters guessed incorrectly: </p>
+                
               </div>
 
               <div class="col-md-6">
                 <br>
                 <div id="incLetters"></div>
-                <br>
+              
               </div>
 
             </div>
@@ -157,16 +150,24 @@
 
     var wrongLetters = [];
 
+    var dashes = [];
+
+    
+
     var wrong = document.getElementById("incLetters");
 
     var correct = document.getElementById("corLetters");
 
-    var dashes = document.getElementById("numChar");
-
+    
       
 
       // This function is run whenever the user presses a key.
       document.onkeyup = function(event) {
+
+      function setCharAt(str,index,chr) {
+    if(index > str.length-1) return str;
+    return str.substr(0,index) + chr + str.substr(index+1);
+}
 
     
 
@@ -179,16 +180,23 @@
 
       console.log("Remaining guesses: "+ RemGuess);
 
-      var word1 = ["b","e","y","o","n","c","e"];
+      var word1 = "beyonce";
+      var index = word1.indexOf(userGuess);
+      dashes="_______";
+
+      console.log(index)
+      var word2 = ["a","b", "b", "a"];
 
       //var lenght = word1.length;
 
-      document.getElementById("numChar").innerHTML = word1[1];
+      //document.getElementById("numChar").innerHTML = word1[i];
 
 
-      alert (word1[1]);
+      //alert (word1[1]);
 
-      var drinkList2 = ["a","b", "b", "a"];
+      document.getElementById("numChar").innerHTML = dashes;
+
+      
     
       var drinkDiv = document.getElementById("demo");
 
@@ -199,21 +207,23 @@
       var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", 
         "v", "w", "x", "y", "z"];
 
+      //user must use a letter from the alphabet
 
      if (alphabet.indexOf(userGuess) <=-1 ) {
 
-        alert("you suck");
+        alert("Please enter a letter");
       }
 
+      else
 
-      //The wrong letters are stored in array: wrongLetters
+      {
+
+      //The wrong letters are stored in the array: wrongLetters
 
 
-      if(word1.indexOf(userGuess) <=-1 ) 
+      if(index <=-1 ) 
 
       { 
-
-        
 
         wrongLetters.push(userGuess);
 
@@ -221,79 +231,65 @@
 
         document.getElementById("incLetters").innerHTML = wrongLetters.join("");
       }
-    
-
-    /*
-    
-    for (var i = 0; i < word1.length; i++) {
-
-      //new line NewDrink
-      var newDrink = document.createElement("div");
-
-      newDrink.innerHTML = word1[i];
-
-      drinkDiv.appendChild(newDrink);
-
-      }*/
-
-      
      
 
-    /* function notify(str) {*/
+      //function notify(str) {*/
 
        //document.querySelector(“#notification”).innerHTML = str;
       //}
 
+      else {
+
+        //The correct letters are stored in the array lettersGuessed
 
 
-      //The correct letters are stored in array lettersGuessed
 
-      for (var i = 0; i < word1.length; i++)
 
-      {
-
-      if (userGuess===word1[i])
-
-      {
-
-      lettersGuessed.push(userGuess);
-
-      // Alerts the key the user pressed (userGuess).
-      //document.write("User guessed: " + userGuess +".   ");
-
-      //document.write("Remaining guesses: " + RemGuess);
-
-      document.getElementById("demo").innerHTML = RemGuess;
-
-      document.getElementById("corLetters").innerHTML = lettersGuessed.join("");
-
-      //document.getElementById("demo").innerHTML= word1[i];
-
-      //lettersGuessed = userGuess;
-
-      console.log("lettersGuessed: " + lettersGuessed);
-
-      console.log("User guessed right");
-
-      console.log("Number of wins: " + win);
-  
-      
-      }
-      
-      else 
-
-      {
         
 
-        //alert("Incorrect letter");
+        lettersGuessed[index] = userGuess;
 
-      
+        dashes = setCharAt(dashes, index, userGuess);
 
-        console.log("User guessed wrong");
+        console.log("letter in dashes"+dashes[index]);
 
+        /*
+        for(var i = 0; i<word.length; i++){
+        if(word[i]===guess){
+          wordChars[i]= guess;
+          
+          document.getElementById("currentWord").innerHTML = wordChars.join(" ");
+
+          */
+
+        // Alerts the key the user pressed (userGuess).
+        //document.write("User guessed: " + userGuess +".   ");
+
+        //document.write("Remaining guesses: " + RemGuess);
+
+        document.getElementById("demo").innerHTML = RemGuess;
+
+        document.getElementById("corLetters").innerHTML = lettersGuessed;
+
+        document.getElementById("numChar").innerHTML = dashes;
+
+        
+
+        //document.getElementById("demo").innerHTML= word1[i];
+
+        //lettersGuessed = userGuess;
+
+
+        console.log("User guessed right");
+
+        console.log("Number of wins: " + win);
+    
+        
       }
+      
+    }  
 
-    }
+    
   };
 
     
