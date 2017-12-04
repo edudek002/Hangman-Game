@@ -41,17 +41,11 @@
               
 
               <p class="card-text">I like traveling in the United States and in Europe. I particulary enjoy hiking in the mountains. Last summer I trekked tour du Mont Blanc, covering a distance of about 170km, including 10km of ascent and descent. In the winter I enjoy downhill skiing in various areas in Colorado, Utah, British Columbia and the Alps.</p>
-
-              
-                
+   
               
             </div>
           </div>
         </div>
-
-    
-
-
 
       
         
@@ -59,59 +53,85 @@
 
           <div class="card card-body border-info mb-3">
 
-              <h5 class="card-title text-center custom_border">This is a game</h5>
-
-          
+              <h3 class="card-title text-center custom_border">Hangman Game</h3>
 
 
-                <div class="row justify-content-center">
-
-                  <p class="card-text">Press any key to get started</p>
-                  <br>
-                  <br>
-
-                </div>
+            <div class="row justify-content-center">
+              <br>
+              <br>
+              <p class="card-text">Press any key to get started</p>
+            </div>
 
 
-                <div class="row justify-content-center" >
+            <div class="row justify-content-center">
 
-                  <div class="col-md-6">
-                    <p class="card-text">Remaining guesses: </p> 
-                  </div>
+              <div class="col-md-6">
+                <br>
+                <p class="card-text">Letters guessed correctly </p>
+                <br>
+              </div>
 
-                  <div id="demo" > 
-                    <br>
-                  </div>    
+              <div class="col-md-6">
+                <br>
+                <div id="corLetters"></div>
+                <br>
+              </div>
 
-                </div>
+            </div>
 
-                <div class="row justify-content-center" >
+            <div class="row justify-content-center">
 
-                  <div class="col-md-6">
-                    <p class="card-text">Incorrect Letters: </p> 
-                  </div>
+              <div class="col-md-6">
+                <br>
+                <p class="card-text">Dashes</p>
+                <br>
+              </div>
 
-                  <div id="incLetters">
-                    <br>
-                  </div>
+              <div class="col-md-6">
+                <br>
+                <div id="numChar"></div>
+                <br>
+              </div>
 
-                </div>
-
-                <div class="row justify-content-center" >
-
-                  <div class="col-md-6">
-                    <p class="card-text">Correct Letters: </p> 
-                  </div>
-
-                  <div id="corLetters">
-                    <br>
-                  </div>
-
-                </div>
+            </div>
 
 
-                <!--<div id=“notification”></div>-->
-            
+            <div class="row justify-content-center">
+
+              <div class="col-md-6">
+                <br>
+                <p class="card-text">Remaining guesses on the right: </p>
+                <br>
+              </div>
+
+              <div class="col-md-6">
+                <br>
+                <div id="demo"></div>
+                <br>
+              </div>
+
+            </div>
+
+            <div class="row justify-content-center">
+
+              <div class="col-md-6">
+                <br>
+                <p class="card-text">Letters guessed incorrectly </p>
+                <br>
+              </div>
+
+              <div class="col-md-6">
+                <br>
+                <div id="incLetters"></div>
+                <br>
+              </div>
+
+            </div>
+
+            <div id="game"></div>
+
+            <div id=“notification”></div>
+   
 
           </div>
 
@@ -120,7 +140,6 @@
     </div>
 
   </div>
-
 
 
 
@@ -140,9 +159,11 @@
 
     var wrong = document.getElementById("incLetters");
 
-    var correct = document.getElementById("corLetters")
+    var correct = document.getElementById("corLetters");
 
-    
+    var dashes = document.getElementById("numChar");
+
+      
 
       // This function is run whenever the user presses a key.
       document.onkeyup = function(event) {
@@ -158,15 +179,16 @@
 
       console.log("Remaining guesses: "+ RemGuess);
 
-      var drinkList = [
-      "b","e","y","o","n","c","e"
-      ];
+      var word1 = ["b","e","y","o","n","c","e"];
 
-      alert (drinkList[1]);
+      //var lenght = word1.length;
 
-      var drinkList2 = [
-      "a","b"
-      ];
+      document.getElementById("numChar").innerHTML = word1[1];
+
+
+      alert (word1[1]);
+
+      var drinkList2 = ["a","b", "b", "a"];
     
       var drinkDiv = document.getElementById("demo");
 
@@ -187,7 +209,11 @@
       //The wrong letters are stored in array: wrongLetters
 
 
-      if (drinkList.indexOf(userGuess) <=-1 ) {
+      if(word1.indexOf(userGuess) <=-1 ) 
+
+      { 
+
+        
 
         wrongLetters.push(userGuess);
 
@@ -199,37 +225,18 @@
 
     /*
     
-    for (var i = 0; i < drinkList.length; i++) {
+    for (var i = 0; i < word1.length; i++) {
 
       //new line NewDrink
       var newDrink = document.createElement("div");
 
-      newDrink.innerHTML = drinkList[i];
+      newDrink.innerHTML = word1[i];
 
       drinkDiv.appendChild(newDrink);
 
       }*/
 
-      //The correct letters are stored in letters Guessed
-
       
-
-      /*if (drinkList[i] ===userGuess) {
-
-        lettersGuessed[i]=userGuess ;
-
-        //lettersGuessed.push(userGuess);
-
-        //current.innerHTML = lettersGuessed.join(" ");
-
-        console.log("lettersGuessed: " + lettersGuessed);
-
-        document.getElementById("corLetters").innerHTML = lettersGuessed;
-
-      }*/
-
-      
-
      
 
     /* function notify(str) {*/
@@ -239,11 +246,13 @@
 
 
 
-      //lettersGuessed.push(userGuess);
+      //The correct letters are stored in array lettersGuessed
 
-      for (var i = 0; i < drinkList.length; i++)
+      for (var i = 0; i < word1.length; i++)
 
-      if (userGuess===drinkList[i])
+      {
+
+      if (userGuess===word1[i])
 
       {
 
@@ -258,7 +267,7 @@
 
       document.getElementById("corLetters").innerHTML = lettersGuessed.join("");
 
-      //document.getElementById("demo").innerHTML= drinkList[i];
+      //document.getElementById("demo").innerHTML= word1[i];
 
       //lettersGuessed = userGuess;
 
@@ -284,7 +293,7 @@
 
       }
 
- 
+    }
   };
 
     
