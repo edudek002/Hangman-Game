@@ -76,7 +76,7 @@
 
               <div class="col-md-6">
                 <br>
-                <p class="card-text">Dashes</p>
+                <p class="card-text">Word:</p>
                 
               </div>
 
@@ -138,25 +138,46 @@
 
 
 
-<script type="text/javascript">
+  <script type="text/javascript">
 
     
+
+    var userGuess;          //letter typed in
+
+    var lettersGuessed =[]; //array of correct guesses
+
+    var wrongLetters = [];  //array of incorrect guesses
+
+    var display = []; // display of the word
+
+    var RemGuess = 15; //remaining guesses
+
+    var index;
 
     var win=0;
-    
-    var RemGuess = 15;
-
-    var lettersGuessed =[];
-
-    var wrongLetters = [];
-
-    var dashes = [];
 
     
 
-    var wrong = document.getElementById("incLetters");
+    //var wrong = document.getElementById("incLetters");
 
-    var correct = document.getElementById("corLetters");
+    //var correct = document.getElementById("corLetters");
+
+      var word1 = "beyonce";
+
+
+      //Populate display
+
+      for (var i = 0; i<word1.length; i++) {
+
+        var symbol ="*"; //symbol used in a display to be replaced with a correct letter
+
+        display.push(symbol);
+
+        console.log("display is "+display);
+
+        document.getElementById("numChar").innerHTML = display.join("");
+
+      }
 
     
       
@@ -164,41 +185,27 @@
       // This function is run whenever the user presses a key.
       document.onkeyup = function(event) {
 
-      function setCharAt(str,index,chr) {
-    if(index > str.length-1) return str;
-    return str.substr(0,index) + chr + str.substr(index+1);
-}
+        var string;
+        var replace;
+/*
+      function replaceAt(string, index, replace) {
+  return string.substring(0, index) + replace + string.substring(index + 1);
+}; */
 
     
 
       // Determines which key was pressed.
-      var userGuess = event.key.toLowerCase();
+      userGuess = event.key.toLowerCase();
 
-      console.log("Letters guessed :" + userGuess);
+      word1 = "beyonce";  
 
+      
       RemGuess=RemGuess-1;
 
       console.log("Remaining guesses: "+ RemGuess);
 
-      var word1 = "beyonce";
-      var index = word1.indexOf(userGuess);
-      dashes="_______";
-
-      console.log(index)
-      var word2 = ["a","b", "b", "a"];
-
-      //var lenght = word1.length;
-
-      //document.getElementById("numChar").innerHTML = word1[i];
-
-
-      //alert (word1[1]);
-
-      document.getElementById("numChar").innerHTML = dashes;
-
       
-    
-      var drinkDiv = document.getElementById("demo");
+
 
 
     //List of available letters for the User
@@ -217,6 +224,12 @@
       else
 
       {
+
+      index = word1.indexOf(userGuess);
+
+      console.log("Letters guessed :" + userGuess);
+
+      console.log("Location: " + index);
 
       //The wrong letters are stored in the array: wrongLetters
 
@@ -242,16 +255,18 @@
 
         //The correct letters are stored in the array lettersGuessed
 
-
-
+        
 
         
 
         lettersGuessed[index] = userGuess;
 
-        dashes = setCharAt(dashes, index, userGuess);
+  
+        display.replaceAt("*",userGuess, index);
 
-        console.log("letter in dashes"+dashes[index]);
+        
+
+        console.log("letter in display "+display[index]);
 
         /*
         for(var i = 0; i<word.length; i++){
@@ -269,9 +284,9 @@
 
         document.getElementById("demo").innerHTML = RemGuess;
 
-        document.getElementById("corLetters").innerHTML = lettersGuessed;
+        document.getElementById("corLetters").innerHTML = lettersGuessed.join("");
 
-        document.getElementById("numChar").innerHTML = dashes;
+        document.getElementById("numChar").innerHTML = display;
 
         
 
