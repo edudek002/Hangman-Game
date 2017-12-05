@@ -151,15 +151,57 @@
     var RemGuess = 15; //remaining guesses
 
     var win=0;
+
+
+    //WORD 1
+
+    var words = ["beyonce","abba" , "maddonna"];
+
+    var dashes = ["*******", "****", "********"]
     
-    //var wrong = document.getElementById("incLetters");
-    //var correct = document.getElementById("corLetters");
 
-    var word1 = "beyonce";
+    word1 = words[Math.floor(Math.random()*words.length)];
 
-    dashes="*******";
+    document.getElementById("corLetters").innerHTML = word1;
 
-    document.getElementById("numChar").innerHTML = dashes;
+    console.log(word1);
+
+    if (word1.length==7)
+
+        {dashes=dashes[0];
+        document.getElementById("numChar").innerHTML = dashes;
+        }
+
+    else if (word1.length==4)
+
+        {dashes=dashes[1];
+        document.getElementById("numChar").innerHTML = dashes;
+        }
+
+    else if (word1.length==8)
+
+        {dashes=dashes[2];
+        document.getElementById("numChar").innerHTML = dashes;
+        }
+
+        console.log(dashes);
+
+
+
+
+      /*
+    function wordChoices{
+
+    word = words[Math.floor(Math.random()*words.length)];
+
+    for (var i = 0; i < word.length; i++){
+
+      wordChars.push("_");
+      document.getElementById("currentWord").innerHTML = wordChars.join(" ");
+    }
+    };
+
+    */
 
 
     //Populate display
@@ -183,27 +225,44 @@
       document.onkeyup = function(event) {
 
 
-      function setCharAt(str,index,chr) {
-      if(index > str.length-1) return str;
-      return str.substr(0,index) + chr + str.substr(index+1);
-      }
+        function setCharAt(str,index,chr) {
+
+          if(index > str.length-1) return str;
+          return str.substr(0,index) + chr + str.substr(index+1);
+        }
+
     
       // Determines which key was pressed.
       userGuess = event.key.toLowerCase();
 
-
-      console.log("Letters guessed :" + userGuess);
+      var index = word1.indexOf(userGuess);
 
       RemGuess=RemGuess-1;
 
-      console.log("Remaining guesses: "+ RemGuess);
+        /*
 
-      //var word1 = "beyonce";
-      var index = word1.indexOf(userGuess);
+        if (RemGuess >=0) {
+
+         document.getElementById("demo").innerHTML = "You won!!!";
+
+        }
+
+        else {
+
+          document.getElementById("demo").innerHTML = "You lost";
+
+        }
+        */
+
+
+      
+
 
       console.log("Letters guessed :" + userGuess);
 
       console.log("Location: " + index);
+
+      console.log("Remaining guesses: "+ RemGuess);
     
      
       
@@ -214,7 +273,7 @@
 
       //user must use a letter from the alphabet
 
-     if (alphabet.indexOf(userGuess) <=-1 ) {
+      if (alphabet.indexOf(userGuess) <=-1 ) {
 
         alert("Please enter a letter");
       }
@@ -223,59 +282,74 @@
 
       {
 
+
+
       //The wrong letters are stored in the array: wrongLetters
 
-      if(index <=-1 ) {
-       
-        wrongLetters.push(userGuess);
+        if(index <=-1 ) { 
 
-        document.getElementById("demo").innerHTML = RemGuess;
+          if (wrongLetters.indexOf(userGuess)!=-1) {
 
-        document.getElementById("incLetters").innerHTML = wrongLetters.join("");
-      }
+          alert("You already tried this letter");
+
+          }
+
+          else {
+
+            wrongLetters.push(userGuess);
+
+            document.getElementById("incLetters").innerHTML = wrongLetters.join("");
+
+            document.getElementById("demo").innerHTML = RemGuess;
+          }
+
+              
+        }
      
-      //function notify(str) {*/
-       //document.querySelector(“#notification”).innerHTML = str;
-      //}
+        //function notify(str) {*/
+         //document.querySelector(“#notification”).innerHTML = str;
+        //}
 
-      else {
+        else {
 
-        //The correct letters are stored in the array lettersGuessed
+          //The correct letters are stored in the array lettersGuessed
+
+
+          if (lettersGuessed.indexOf(userGuess)!=-1) {
+
+            alert("You already tried this letter");
+
+          }
+
+              
+          else {
         
-        lettersGuessed[index] = userGuess;
-        dashes = setCharAt(dashes, index, userGuess);
-        console.log("letter in dashes"+dashes[index]);
+          lettersGuessed[index] = userGuess;
 
-        /*
-        for(var i = 0; i<word.length; i++){
-        if(word[i]===guess){
-          wordChars[i]= guess;
-          
-          document.getElementById("currentWord").innerHTML = wordChars.join(" ");
-          */
-        // Alerts the key the user pressed (userGuess).
-        //document.write("User guessed: " + userGuess +".   ");
-        //document.write("Remaining guesses: " + RemGuess);
+          dashes = setCharAt(dashes, index, userGuess);
 
-        document.getElementById("demo").innerHTML = RemGuess;
+          console.log("letter in dashes"+dashes[index]);
 
-        document.getElementById("corLetters").innerHTML = lettersGuessed;
 
-        //Important! change from dashes to letter
+          document.getElementById("corLetters").innerHTML = lettersGuessed;
 
-        document.getElementById("numChar").innerHTML = dashes;
-        
-        //document.getElementById("demo").innerHTML= word1[i];
-        //lettersGuessed = userGuess;
-        console.log("User guessed right");
-        console.log("Number of wins: " + win);
+          //Important! change from dashes to letter
+
+          document.getElementById("numChar").innerHTML = dashes;
+
+          document.getElementById("demo").innerHTML = RemGuess;
+              
+          console.log("User guessed right");
+
+          console.log("Number of wins: " + win);
     
+        }    
         
       }
       
     }  
     
-  };
+  };  
     
   </script>
 
