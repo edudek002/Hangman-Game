@@ -11,6 +11,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display+SC" rel="stylesheet">
+
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 
@@ -29,11 +31,13 @@
 
           <div class="card border-info mb-3">
 
-            <div class="card-body">
+            <div class="card-body text-center">
 
-              <h3 class="card-title custom_border">About Me</h3>
+              <h3 class="card-title custom_border text-center">HANGMAN</h3>
 
-              <p class="card-text">I like traveling in the United States and in Europe. </p>
+              <p class="card-text ">The Newest Version</p>
+
+              <img src="assets/images/GameA.png" alt="my picture" width="400" height="400">
    
               
             </div>
@@ -46,41 +50,43 @@
 
           <div class="card card-body border-info mb-3">
 
-              <h3 class="card-title text-center custom_border">Hangman Game</h3>
+              <h3 class="card-title text-center custom_border">Play the Game</h3>
 
 
             <div class="row justify-content-center">
+              <br>
               <br>
               <br>
               <p class="card-text">Press any key to get started</p>
             </div>
 
-
+            <!--
             <div class="row justify-content-center">
 
-              <div class="col-md-6">
+              <div class="col-md-8">
                 <br>
-                <p class="card-text">Letters guessed correctly: </p>
+                <p class="card-text">Guess what letter I am thinking of: </p>
                 
               </div>
 
-              <div class="col-md-6">
+              <div class="col-md-4">
                 <br>
                 <div id="corLetters"></div>
                 
               </div>
 
-            </div>
+            </div> -->
 
             <div class="row justify-content-center">
 
-              <div class="col-md-6">
+              <div class="col-md-8">
                 <br>
-                <p class="card-text">Word:</p>
+                <p class="card-text">Guess this word:</p>
+
                 
               </div>
 
-              <div class="col-md-6">
+              <div class="col-md-4">
                 <br>
                 <div id="numChar"></div>
                 
@@ -91,13 +97,13 @@
 
             <div class="row justify-content-center">
 
-              <div class="col-md-6">
+              <div class="col-md-8">
                 <br>
-                <p class="card-text">Remaining guesses: </p>
+                <p class="card-text">Number of Guesses Remaining: </p>
                 
               </div>
 
-              <div class="col-md-6">
+              <div class="col-md-4">
                 <br>
                 <div id="demo"></div>
                 
@@ -107,24 +113,53 @@
 
             <div class="row justify-content-center">
 
-              <div class="col-md-6">
+              <div class="col-md-8">
                 <br>
+                <p class="card-text">Your guesses so far: </p>
+                <p class="card-text">Letters guessed correctly: </p>
                 <p class="card-text">Letters guessed incorrectly: </p>
                 
               </div>
 
-              <div class="col-md-6">
+              <div class="col-md-4">
+                <br>
+                <br>
+                <div id="corLetters"></div>
                 <br>
                 <div id="incLetters"></div>
+              
               
               </div>
 
             </div>
 
+
+
+            <div class="row justify-content-center">
+
+              <div class="col-md-6 text center">
+                <br>
+                <br>
+                <br>
+                <h4 class="card-text">Total Wins = </h4>
+                <br>
+                
+              </div>
+
+              <div class="col-md-6">
+                <br>
+                <br>
+                <br>
+                <div id="gamesWon"></div>
+                
+              </div>
+
+            </div> 
+
+            <!--
             <div id="game"></div>
 
-            <div id=“notification”></div>
-   
+            <div id=“notification”></div -->   
 
           </div>
 
@@ -162,7 +197,7 @@
 
     word1 = words[Math.floor(Math.random()*words.length)];
 
-    document.getElementById("corLetters").innerHTML = word1;
+    //document.getElementById("corLetters").innerHTML = word1;
 
     console.log(word1);
 
@@ -204,24 +239,10 @@
     */
 
 
-    //Populate display
-
-      /*for (var i = 0; i<word1.length; i++) {
-
-         //symbol used in a display to be replaced with a correct letter
-
-        dashes[1] ="*";
-
-        console.log("display is "+ dashes);
-
-        document.getElementById("numChar").innerHTML = dashes;
-
-        };
-
-        */
-    
+ 
       
       // This function is run whenever the user presses a key.
+
       document.onkeyup = function(event) {
 
 
@@ -349,7 +370,9 @@
       
     }  
     
-  };  
+  };
+
+  document.getElementById("gamesWon").innerHTML = win;  
     
   </script>
 

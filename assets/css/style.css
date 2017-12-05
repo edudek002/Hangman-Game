@@ -1,0 +1,21 @@
+
+body {
+
+font-family: 'Playfair Display SC', serif;
+
+}
+
+#numChar {
+	color :navy;
+	font-size: 22px;
+
+}
+
+
+#gamesWon {
+	color :red;
+	font-size: 26px;
+}
+
+
+
