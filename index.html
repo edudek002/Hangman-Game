@@ -138,78 +138,76 @@
 
 
 
-  <script type="text/javascript">
+<script type="text/javascript">
 
+    var userGuess;
     
-
-    var userGuess;          //letter typed in
-
     var lettersGuessed =[]; //array of correct guesses
 
     var wrongLetters = [];  //array of incorrect guesses
 
-    var display = []; // display of the word
+    var dashes = []; // display of the word
 
     var RemGuess = 15; //remaining guesses
 
-    var index;
-
     var win=0;
-
     
-
     //var wrong = document.getElementById("incLetters");
-
     //var correct = document.getElementById("corLetters");
 
-      var word1 = "beyonce";
+    var word1 = "beyonce";
+
+    dashes="*******";
+
+    document.getElementById("numChar").innerHTML = dashes;
 
 
-      //Populate display
+    //Populate display
 
-      for (var i = 0; i<word1.length; i++) {
+      /*for (var i = 0; i<word1.length; i++) {
 
-        var symbol ="*"; //symbol used in a display to be replaced with a correct letter
+         //symbol used in a display to be replaced with a correct letter
 
-        display.push(symbol);
+        dashes[1] ="*";
 
-        console.log("display is "+display);
+        console.log("display is "+ dashes);
 
-        document.getElementById("numChar").innerHTML = display.join("");
+        document.getElementById("numChar").innerHTML = dashes;
 
-      }
+        };
 
+        */
     
       
-
       // This function is run whenever the user presses a key.
       document.onkeyup = function(event) {
 
-        var string;
-        var replace;
-/*
-      function replaceAt(string, index, replace) {
-  return string.substring(0, index) + replace + string.substring(index + 1);
-}; */
 
+      function setCharAt(str,index,chr) {
+      if(index > str.length-1) return str;
+      return str.substr(0,index) + chr + str.substr(index+1);
+      }
     
-
       // Determines which key was pressed.
       userGuess = event.key.toLowerCase();
 
-      word1 = "beyonce";  
 
-      
+      console.log("Letters guessed :" + userGuess);
+
       RemGuess=RemGuess-1;
 
       console.log("Remaining guesses: "+ RemGuess);
 
+      //var word1 = "beyonce";
+      var index = word1.indexOf(userGuess);
+
+      console.log("Letters guessed :" + userGuess);
+
+      console.log("Location: " + index);
+    
+     
       
-
-
-
     //List of available letters for the User
-
 
       var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", 
         "v", "w", "x", "y", "z"];
@@ -225,19 +223,10 @@
 
       {
 
-      index = word1.indexOf(userGuess);
-
-      console.log("Letters guessed :" + userGuess);
-
-      console.log("Location: " + index);
-
       //The wrong letters are stored in the array: wrongLetters
 
-
-      if(index <=-1 ) 
-
-      { 
-
+      if(index <=-1 ) {
+       
         wrongLetters.push(userGuess);
 
         document.getElementById("demo").innerHTML = RemGuess;
@@ -245,28 +234,17 @@
         document.getElementById("incLetters").innerHTML = wrongLetters.join("");
       }
      
-
       //function notify(str) {*/
-
        //document.querySelector(“#notification”).innerHTML = str;
       //}
 
       else {
 
         //The correct letters are stored in the array lettersGuessed
-
         
-
-        
-
         lettersGuessed[index] = userGuess;
-
-  
-        display.replaceAt("*",userGuess, index);
-
-        
-
-        console.log("letter in display "+display[index]);
+        dashes = setCharAt(dashes, index, userGuess);
+        console.log("letter in dashes"+dashes[index]);
 
         /*
         for(var i = 0; i<word.length; i++){
@@ -274,41 +252,31 @@
           wordChars[i]= guess;
           
           document.getElementById("currentWord").innerHTML = wordChars.join(" ");
-
           */
-
         // Alerts the key the user pressed (userGuess).
         //document.write("User guessed: " + userGuess +".   ");
-
         //document.write("Remaining guesses: " + RemGuess);
 
         document.getElementById("demo").innerHTML = RemGuess;
 
-        document.getElementById("corLetters").innerHTML = lettersGuessed.join("");
+        document.getElementById("corLetters").innerHTML = lettersGuessed;
 
-        document.getElementById("numChar").innerHTML = display;
+        //Important! change from dashes to letter
 
+        document.getElementById("numChar").innerHTML = dashes;
         
-
         //document.getElementById("demo").innerHTML= word1[i];
-
         //lettersGuessed = userGuess;
-
-
         console.log("User guessed right");
-
         console.log("Number of wins: " + win);
     
         
       }
       
     }  
-
     
   };
-
     
-
   </script>
 
 </body>
