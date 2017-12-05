@@ -258,6 +258,14 @@
 
       var index = word1.indexOf(userGuess);
 
+      console.log("index = " + index);
+
+
+
+      var indexRepeat = word1.indexOf(userGuess, index+1);
+
+      console.log("indexRepeat = " + indexRepeat)
+
       RemGuess=RemGuess-1;
 
         /*
@@ -281,7 +289,7 @@
 
       console.log("Letters guessed :" + userGuess);
 
-      console.log("Location: " + index);
+      
 
       console.log("Remaining guesses: "+ RemGuess);
     
@@ -349,7 +357,34 @@
 
           dashes = setCharAt(dashes, index, userGuess);
 
-          console.log("letter in dashes"+dashes[index]);
+          console.log("Letter " + dashes[index]+" at location " + index);
+
+          
+            //searching for repeat letters
+ 
+
+            if (word1.indexOf(userGuess, index+1)!=-1) {
+
+              alert("There is a second letter!");
+
+              lettersGuessed[indexRepeat] = userGuess;
+
+              dashes = setCharAt(dashes, indexRepeat, userGuess);
+
+              console.log("Letter " + dashes[indexRepeat]+" at location " + indexRepeat);
+
+            }
+
+
+
+          /* 
+
+
+          dashes = setCharAt(dashes, index+1, userGuess);
+
+          console.log("Letter " + dashes[index+1]+" at location " + index); */
+
+          
 
 
           document.getElementById("corLetters").innerHTML = lettersGuessed;
@@ -372,7 +407,9 @@
     
   };
 
-  document.getElementById("gamesWon").innerHTML = win;  
+  if (RemGuess>=0) {win++} else {"You lost"}
+
+  //document.getElementById("gamesWon").innerHTML = win;  
     
   </script>
 
