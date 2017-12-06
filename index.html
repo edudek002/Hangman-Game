@@ -181,6 +181,10 @@
 
     var RemGuess = 15; //remaining guesses
 
+    var minGuess = 0; //minimumum guesses before game ends
+
+    var counter = 0;
+
     var win=0;
 
 
@@ -388,12 +392,29 @@
       }
       
     }  
+
+    counter = RemGuess;
+
+    // All of the same game win-lose logic applies. So the rest remains unchanged.
+    //alert("New score: " + counter);
+
+    if (counter <= minGuess) {
+      document.getElementById("gamesWon").innerHTML = counter;
+      //alert("You lose!");
+    }
+
+    else {
+
+      //no more dashes left
+      counter=1;
+      document.getElementById("gamesWon").innerHTML = counter;
+    }
+
+    
     
   };
 
-  if (RemGuess>=0) {win++} else {"You lost"}
-
-  //document.getElementById("gamesWon").innerHTML = win; 
+ 
 
   /*
 
