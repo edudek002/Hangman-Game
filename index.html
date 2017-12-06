@@ -60,36 +60,17 @@
               <p class="card-text">Press any key to get started</p>
             </div>
 
-            <!--
-            <div class="row justify-content-center">
-
-              <div class="col-md-8">
-                <br>
-                <p class="card-text">Guess what letter I am thinking of: </p>
-                
-              </div>
-
-              <div class="col-md-4">
-                <br>
-                <div id="corLetters"></div>
-                
-              </div>
-
-            </div> -->
 
             <div class="row justify-content-center">
 
-              <div class="col-md-8">
+              <div class="col-md-6">
                 <br>
-                <p class="card-text">Guess this word:</p>
-
-                
+                <p class="card-text">Guess this word:</p>                
               </div>
 
-              <div class="col-md-4">
+              <div class="col-md-6 text-center">
                 <br>
-                <div id="numChar"></div>
-                
+                <div id="numChar"></div> 
               </div>
 
             </div>
@@ -97,67 +78,80 @@
 
             <div class="row justify-content-center">
 
-              <div class="col-md-8">
+              <div class="col-md-6">
                 <br>
-                <p class="card-text">Number of Guesses Remaining: </p>
-                
+                <p class="card-text">Remaining guesses: </p> 
               </div>
 
-              <div class="col-md-4">
+              <div class="col-md-6 text-center">
                 <br>
-                <div id="demo"></div>
-                
+                <div id="demo"></div> 
               </div>
 
             </div>
 
             <div class="row justify-content-center">
-
-              <div class="col-md-8">
-                <br>
-                <p class="card-text">Your guesses so far: </p>
-                <p class="card-text">Letters guessed correctly: </p>
-                <p class="card-text">Letters guessed incorrectly: </p>
-                
-              </div>
-
-              <div class="col-md-4">
-                <br>
-                <br>
-                <div id="corLetters"></div>
-                <br>
-                <div id="incLetters"></div>
-              
-              
-              </div>
-
-            </div>
-
-
-
-            <div class="row justify-content-center">
-
-              <div class="col-md-6 text center">
-                <br>
-                <br>
-                <br>
-                <h4 class="card-text">Total Wins = </h4>
-                <br>
-                
-              </div>
 
               <div class="col-md-6">
                 <br>
                 <br>
+                <p class="card-text">Your guesses so far: </p>
+              </div>
+
+              <div class="col-md-6 text-center">       
+              </div>
+
+            </div>
+
+            <div class="row justify-content-center">
+
+              <div class="col-md-6">
+                <br>
+                <p class="card-text">Correct guesses: </p>
+              </div>
+
+              <div class="col-md-6 text-center">
+                <br>
+                <div id="corLetters"></div>        
+              </div>
+
+            </div>
+
+
+            <div class="row justify-content-center">
+
+              <div class="col-md-6">
+                <br>
+                <p class="card-text">Incorrect guesses: </p>   
+              </div>
+
+              <div class="col-md-6 text-center">
+                <br>
+                <div id="incLetters"></div>
+              </div>
+
+            </div>
+
+
+            <div class="row justify-content-center">
+
+              <div class="col-md-6">
+                <br>
+                <br>
+                <h4 class="card-text">Total Wins = </h4>
+                <br> 
+              </div>
+
+              <div class="col-md-6 text-center">
+                <br>
                 <br>
                 <div id="gamesWon"></div>
-                
               </div>
 
             </div> 
 
             <!--
-            <div id="game"></div>
+            
 
             <div id=“notification”></div -->   
 
@@ -179,6 +173,8 @@
     
     var lettersGuessed =[]; //array of correct guesses
 
+    var correctLetters = []; // array of correct guess for display purpose
+
     var wrongLetters = [];  //array of incorrect guesses
 
     var dashes = []; // display of the word
@@ -190,7 +186,7 @@
 
     //WORD 1
 
-    var words = ["beyonce","abba" , "maddonna"];
+    var words = ["beyonce","abaa" , "maddonna"];
 
     var dashes = ["*******", "****", "********"]
     
@@ -268,25 +264,7 @@
 
       RemGuess=RemGuess-1;
 
-        /*
-
-        if (RemGuess >=0) {
-
-         document.getElementById("demo").innerHTML = "You won!!!";
-
-        }
-
-        else {
-
-          document.getElementById("demo").innerHTML = "You lost";
-
-        }
-        */
-
-
       
-
-
       console.log("Letters guessed :" + userGuess);
 
       
@@ -307,16 +285,12 @@
         alert("Please enter a letter");
       }
 
-      else
+      else {
 
-      {
-
-
-
-      //The wrong letters are stored in the array: wrongLetters
 
         if(index <=-1 ) { 
 
+          //The wrong letters are stored in the array: wrongLetters
           if (wrongLetters.indexOf(userGuess)!=-1) {
 
           alert("You already tried this letter");
@@ -342,8 +316,6 @@
         else {
 
           //The correct letters are stored in the array lettersGuessed
-
-
           if (lettersGuessed.indexOf(userGuess)!=-1) {
 
             alert("You already tried this letter");
@@ -352,20 +324,27 @@
 
               
           else {
-        
+
+          //Array of correct letters
           lettersGuessed[index] = userGuess;
 
           dashes = setCharAt(dashes, index, userGuess);
 
+          //Array of correct letters created for display purposes:
+          correctLetters.push(userGuess);
+
+          document.getElementById("corLetters").innerHTML = correctLetters.join("");
+
           console.log("Letter " + dashes[index]+" at location " + index);
+
 
           
             //searching for repeat letters
- 
+            //for (var i=1; i<= word1.length; i++) {
 
             if (word1.indexOf(userGuess, index+1)!=-1) {
 
-              alert("There is a second letter!");
+              alert("There is a second letter " + event.key.toUpperCase());
 
               lettersGuessed[indexRepeat] = userGuess;
 
@@ -373,7 +352,10 @@
 
               console.log("Letter " + dashes[indexRepeat]+" at location " + indexRepeat);
 
+             
             }
+
+            //};
 
 
 
@@ -385,9 +367,11 @@
           console.log("Letter " + dashes[index+1]+" at location " + index); */
 
           
+          //lettersGuessed.push(userGuess);
 
+          //document.getElementById("corLetters").innerHTML = lettersGuessed.join("");
 
-          document.getElementById("corLetters").innerHTML = lettersGuessed;
+          //document.getElementById("corLetters").innerHTML = lettersGuessed;
 
           //Important! change from dashes to letter
 
@@ -409,7 +393,23 @@
 
   if (RemGuess>=0) {win++} else {"You lost"}
 
-  //document.getElementById("gamesWon").innerHTML = win;  
+  //document.getElementById("gamesWon").innerHTML = win; 
+
+  /*
+
+        if (RemGuess >=0) {
+
+         document.getElementById("demo").innerHTML = "You won!!!";
+
+        }
+
+        else {
+
+          document.getElementById("demo").innerHTML = "You lost";
+
+        }
+        */
+ 
     
   </script>
 
