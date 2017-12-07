@@ -198,24 +198,24 @@
       //This function picks a new word
       
 
-      var words = ["beyonce","abba" , "maddonna"];
-      var dashes = ["*******", "****", "********"];
+      var words = ["jenniferl", "beyonce","adele"];
+      var dashes = ["*********","*******", "*****"];
       
       word1 = words[Math.floor(Math.random()*words.length)];
 
-      if (word1.length==7)
+      if (word1.length==9)
 
           {dashes=dashes[0];
           document.getElementById("numChar").innerHTML = dashes;
       }
 
-      else if (word1.length==4)
+      else if (word1.length==7)
 
           {dashes=dashes[1];
           document.getElementById("numChar").innerHTML = dashes;
       }
 
-      else if (word1.length==8)
+      else if (word1.length==5)
 
           {dashes=dashes[2];
           document.getElementById("numChar").innerHTML = dashes;
@@ -372,25 +372,30 @@
 
         //This function picks a new word
       
-        words = ["beyonce","abba" , "maddonna"];
-        dashes = ["*******", "****", "********"];
+       
+
+        words = ["jenniferl", "beyonce","adele"];
+        dashes = ["*********","*******", "*****"];
         
         word1 = words[Math.floor(Math.random()*words.length)];
-        if (word1.length==7)
+        if (word1.length==9)
             {dashes=dashes[0];
             document.getElementById("numChar").innerHTML = dashes;
         }
-        else if (word1.length==4)
+        else if (word1.length==7)
             {dashes=dashes[1];
             document.getElementById("numChar").innerHTML = dashes;
         }
-        else if (word1.length==8)
+        else if (word1.length==5)
             {dashes=dashes[2];
             document.getElementById("numChar").innerHTML = dashes;
         }
           console.log(dashes);
           console.log("brand new word: " + word1);
         }
+
+
+
 
 
       else if (guessedWord.length<=word1.length && RemGuess==0)  {  
@@ -422,26 +427,34 @@
 
         //This function picks a new word
       
-        words = ["beyonce","abba" , "maddonna"];
-        dashes = ["*******", "****", "********"];
+
+
+        words = ["jenniferl", "beyonce","adele"];
+        dashes = ["*********","*******", "*****"];
         
         word1 = words[Math.floor(Math.random()*words.length)];
-        if (word1.length==7)
+
+        if (word1.length==9)
+
             {dashes=dashes[0];
             document.getElementById("numChar").innerHTML = dashes;
         }
-        else if (word1.length==4)
+
+        else if (word1.length==7)
+
             {dashes=dashes[1];
             document.getElementById("numChar").innerHTML = dashes;
         }
-        else if (word1.length==8)
+
+        else if (word1.length==5)
+
             {dashes=dashes[2];
             document.getElementById("numChar").innerHTML = dashes;
         }
+
           console.log(dashes);
           console.log("brand new word: " + word1);
-               
-
+                 
       } 
 
     };
