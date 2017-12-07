@@ -173,6 +173,8 @@
     
     var lettersGuessed =[]; //array of correct guesses
 
+    var guessedWord = []; //array ....
+
     var correctLetters = []; // array of correct guess for display purpose
 
     var wrongLetters = [];  //array of incorrect guesses
@@ -181,16 +183,16 @@
 
     var RemGuess = 15; //remaining guesses
 
-    var minGuess = 0; //minimumum guesses before game ends
+    //var minGuess = 0; //minimumum guesses before game ends
 
     var counter = 0;
 
     var win=0;
 
 
-    //WORD 1
+    function newWord(){
 
-    var words = ["beyonce","abaa" , "maddonna"];
+    var words = ["beyonce","abba" , "maddonna"];
 
     var dashes = ["*******", "****", "********"]
     
@@ -221,8 +223,13 @@
 
         console.log(dashes);
 
+      }
+       newWord();
+
+       console.log("brand new word" + newWord);
 
 
+            numChar
 
       /*
     function wordChoices{
@@ -285,65 +292,44 @@
       //user must use a letter from the alphabet
 
       if (alphabet.indexOf(userGuess) <=-1 ) {
-
         alert("Please enter a letter");
       }
 
       else {
-
-
         if(index <=-1 ) { 
 
           //The wrong letters are stored in the array: wrongLetters
           if (wrongLetters.indexOf(userGuess)!=-1) {
-
           alert("You already tried this letter");
-
           }
 
           else {
-
             wrongLetters.push(userGuess);
-
             document.getElementById("incLetters").innerHTML = wrongLetters.join("");
-
             document.getElementById("demo").innerHTML = RemGuess;
           }
-
-              
+      
         }
-     
-        //function notify(str) {*/
-         //document.querySelector(“#notification”).innerHTML = str;
-        //}
 
         else {
 
           //The correct letters are stored in the array lettersGuessed
           if (lettersGuessed.indexOf(userGuess)!=-1) {
-
             alert("You already tried this letter");
-
           }
-
-              
+      
           else {
-
           //Array of correct letters
           lettersGuessed[index] = userGuess;
-
           dashes = setCharAt(dashes, index, userGuess);
-
           //Array of correct letters created for display purposes:
           correctLetters.push(userGuess);
-
+          guessedWord.push(userGuess);
+          //numberOfLettersGuessed.push(userGuess);
           document.getElementById("corLetters").innerHTML = correctLetters.join("");
-
           console.log("Letter " + dashes[index]+" at location " + index);
 
-
-          
-            //searching for repeat letters
+            //Nowsearching for repeat letters
             //for (var i=1; i<= word1.length; i++) {
 
             if (word1.indexOf(userGuess, index+1)!=-1) {
@@ -356,27 +342,16 @@
 
               console.log("Letter " + dashes[indexRepeat]+" at location " + indexRepeat);
 
+              
+              guessedWord.push(userGuess);
              
             }
 
-            //};
+          
 
 
-
-          /* 
-
-
-          dashes = setCharAt(dashes, index+1, userGuess);
-
-          console.log("Letter " + dashes[index+1]+" at location " + index); */
 
           
-          //lettersGuessed.push(userGuess);
-
-          //document.getElementById("corLetters").innerHTML = lettersGuessed.join("");
-
-          //document.getElementById("corLetters").innerHTML = lettersGuessed;
-
           //Important! change from dashes to letter
 
           document.getElementById("numChar").innerHTML = dashes;
@@ -386,6 +361,8 @@
           console.log("User guessed right");
 
           console.log("Number of wins: " + win);
+
+          console.log("Number of lettersGuessed  =" + guessedWord.length);
     
         }    
         
@@ -393,44 +370,55 @@
       
     }  
 
-    counter = RemGuess;
+  
 
     // All of the same game win-lose logic applies. So the rest remains unchanged.
     //alert("New score: " + counter);
 
-    if (counter <= minGuess) {
+    if (guessedWord.length==word1.length && RemGuess>=0) {
+      counter++;
       document.getElementById("gamesWon").innerHTML = counter;
-      //alert("You lose!");
+      alert("You win!");
+
+      //start new game
+
+      newWord();
+
+      console.log("brand new word" + newWord);
+
+      //RESET
+
+      RemGuess = 15;
+      document.getElementById("demo").innerHTML = RemGuess;
+      document.getElementById("incLetters").innerHTML = "";
+      document.getElementById("corLetters").innerHTML = "";
+
     }
 
-    else {
-
-      //no more dashes left
-      counter=1;
+    else if (guessedWord.length<=word1.length && RemGuess==0)  {
+      
       document.getElementById("gamesWon").innerHTML = counter;
-    }
+      alert("You lost!");
 
-    
+      //start new game
+
+      //new word
+
+      newWord();
+
+      console.log("brand new word" + newWord);
+
+      //RESET
+
+      RemGuess = 15;
+      document.getElementById("demo").innerHTML = RemGuess;
+      document.getElementById("incLetters").innerHTML = "";
+      document.getElementById("corLetters").innerHTML = "";
+
+    }   
     
   };
 
- 
-
-  /*
-
-        if (RemGuess >=0) {
-
-         document.getElementById("demo").innerHTML = "You won!!!";
-
-        }
-
-        else {
-
-          document.getElementById("demo").innerHTML = "You lost";
-
-        }
-        */
- 
     
   </script>
 
