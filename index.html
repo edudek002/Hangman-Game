@@ -167,124 +167,92 @@
 
 
 
-<script type="text/javascript">
+  <script type="text/javascript">
 
     var userGuess;
-    
     var lettersGuessed =[]; //array of correct guesses
-
     var guessedWord = []; //array ....
-
     var correctLetters = []; // array of correct guess for display purpose
-
     var wrongLetters = [];  //array of incorrect guesses
-
     var dashes = []; // display of the word
-
     var RemGuess = 15; //remaining guesses
-
-    //var minGuess = 0; //minimumum guesses before game ends
-
     var counter = 0;
+    /*
+    function reset(){
 
-    var win=0;
-
-
-    function newWord(){
-
-    var words = ["beyonce","abba" , "maddonna"];
-
-    var dashes = ["*******", "****", "********"]
+      userGuess = "";
+      lettersGuessed =[]; //array of correct guesses
+      guessedWord = []; //array ....
+      correctLetters = []; // array of correct guess for display purpose
+      wrongLetters = [];  //array of incorrect guesses
+      dashes = []; // display of the word
+      RemGuess = 15; //remaining guesses
+      index =0;
+      indexRepeat=0;
+      document.getElementById("demo").innerHTML = RemGuess;
+      document.getElementById("incLetters").innerHTML = "";
+      document.getElementById("corLetters").innerHTML = "";
+    };
+    */ 
     
+      //This function picks a new word
+      
 
-    word1 = words[Math.floor(Math.random()*words.length)];
+      var words = ["beyonce","abba" , "maddonna"];
+      var dashes = ["*******", "****", "********"];
+      
+      word1 = words[Math.floor(Math.random()*words.length)];
 
-    //document.getElementById("corLetters").innerHTML = word1;
+      if (word1.length==7)
 
-    console.log(word1);
+          {dashes=dashes[0];
+          document.getElementById("numChar").innerHTML = dashes;
+      }
 
-    if (word1.length==7)
+      else if (word1.length==4)
 
-        {dashes=dashes[0];
-        document.getElementById("numChar").innerHTML = dashes;
-        }
+          {dashes=dashes[1];
+          document.getElementById("numChar").innerHTML = dashes;
+      }
 
-    else if (word1.length==4)
+      else if (word1.length==8)
 
-        {dashes=dashes[1];
-        document.getElementById("numChar").innerHTML = dashes;
-        }
-
-    else if (word1.length==8)
-
-        {dashes=dashes[2];
-        document.getElementById("numChar").innerHTML = dashes;
-        }
+          {dashes=dashes[2];
+          document.getElementById("numChar").innerHTML = dashes;
+      }
 
         console.log(dashes);
-
-      }
-       newWord();
-
-       console.log("brand new word" + newWord);
-
-
-            numChar
-
-      /*
-    function wordChoices{
-
-    word = words[Math.floor(Math.random()*words.length)];
-
-    for (var i = 0; i < word.length; i++){
-
-      wordChars.push("_");
-      document.getElementById("currentWord").innerHTML = wordChars.join(" ");
-    }
-    };
-
-    */
-
-
- 
+        console.log("brand new word: " + word1);
       
-      // This function is run whenever the user presses a key.
+      
+
+      
+    // This function is run whenever the user presses a key.
 
       document.onkeyup = function(event) {
 
 
-        function setCharAt(str,index,chr) {
+      function setCharAt(str,index,chr) {
 
-          if(index > str.length-1) return str;
-          return str.substr(0,index) + chr + str.substr(index+1);
-        }
+        if(index > str.length-1) return str;
+        return str.substr(0,index) + chr + str.substr(index+1);
+      }
 
     
       // Determines which key was pressed.
       userGuess = event.key.toLowerCase();
 
       var index = word1.indexOf(userGuess);
-
-      console.log("index = " + index);
-
-
-
       var indexRepeat = word1.indexOf(userGuess, index+1);
-
-      console.log("indexRepeat = " + indexRepeat)
 
       RemGuess=RemGuess-1;
 
-      
+      console.log("index = " + index);
+      console.log("indexRepeat = " + indexRepeat); 
       console.log("Letters guessed :" + userGuess);
-
-      
-
       console.log("Remaining guesses: "+ RemGuess);
-    
-     
       
-    //List of available letters for the User
+      //List of available letters 
 
       var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", 
         "v", "w", "x", "y", "z"];
@@ -300,7 +268,7 @@
 
           //The wrong letters are stored in the array: wrongLetters
           if (wrongLetters.indexOf(userGuess)!=-1) {
-          alert("You already tried this letter");
+            alert("You already tried this letter");
           }
 
           else {
@@ -319,18 +287,27 @@
           }
       
           else {
+
           //Array of correct letters
           lettersGuessed[index] = userGuess;
+
+          console.log("lettersGuessed[index]=" + lettersGuessed[index]);
+
           dashes = setCharAt(dashes, index, userGuess);
+
+          console.log("dashes " + dashes);
+
           //Array of correct letters created for display purposes:
           correctLetters.push(userGuess);
           guessedWord.push(userGuess);
-          //numberOfLettersGuessed.push(userGuess);
-          document.getElementById("corLetters").innerHTML = correctLetters.join("");
-          console.log("Letter " + dashes[index]+" at location " + index);
 
-            //Nowsearching for repeat letters
-            //for (var i=1; i<= word1.length; i++) {
+          document.getElementById("corLetters").innerHTML = correctLetters.join("");
+
+          console.log("Letter " + dashes[index] +" at location " + index);
+
+
+            //Now searching for repeated letters
+
 
             if (word1.indexOf(userGuess, index+1)!=-1) {
 
@@ -342,84 +319,133 @@
 
               console.log("Letter " + dashes[indexRepeat]+" at location " + indexRepeat);
 
-              
               guessedWord.push(userGuess);
              
             }
 
-          
+            //Important! change from dashes to letter
 
+            document.getElementById("numChar").innerHTML = dashes;
 
+            document.getElementById("demo").innerHTML = RemGuess;
+                
+            console.log("User guessed right");
 
-          
-          //Important! change from dashes to letter
-
-          document.getElementById("numChar").innerHTML = dashes;
-
-          document.getElementById("demo").innerHTML = RemGuess;
-              
-          console.log("User guessed right");
-
-          console.log("Number of wins: " + win);
-
-          console.log("Number of lettersGuessed  =" + guessedWord.length);
+            console.log("Number of lettersGuessed  =" + guessedWord.length);
     
-        }    
+          }    
         
-      }
+        }
       
-    }  
+      }  
 
   
 
-    // All of the same game win-lose logic applies. So the rest remains unchanged.
-    //alert("New score: " + counter);
+      if (guessedWord.length==word1.length && RemGuess>=0) {
 
-    if (guessedWord.length==word1.length && RemGuess>=0) {
-      counter++;
-      document.getElementById("gamesWon").innerHTML = counter;
-      alert("You win!");
+        counter++;
+        document.getElementById("gamesWon").innerHTML = counter;
+        alert("You win!"); 
 
-      //start new game
+        //Reset function
 
-      newWord();
+        userGuess = "";
+        lettersGuessed =[]; //array of correct guesses
+        guessedWord = []; //array ....
+        correctLetters = []; // array of correct guess for display purpose
+        wrongLetters = [];  //array of incorrect guesses
+        dashes = []; // display of the word
+        RemGuess = 15; //remaining guesses
+        index =0;
+        indexRepeat=0;
+        document.getElementById("demo").innerHTML = RemGuess;
+        document.getElementById("incLetters").innerHTML = "";
+        document.getElementById("corLetters").innerHTML = "";
 
-      console.log("brand new word" + newWord);
+        
+        console.log("index = " + index);
+        console.log("indexRepeat = " + indexRepeat); 
+        console.log("Letters guessed :" + userGuess);
+        console.log("Remaining guesses: "+ RemGuess);
 
-      //RESET
+        //Get a new word 
 
-      RemGuess = 15;
-      document.getElementById("demo").innerHTML = RemGuess;
-      document.getElementById("incLetters").innerHTML = "";
-      document.getElementById("corLetters").innerHTML = "";
-
-    }
-
-    else if (guessedWord.length<=word1.length && RemGuess==0)  {
+        //This function picks a new word
       
-      document.getElementById("gamesWon").innerHTML = counter;
-      alert("You lost!");
+        words = ["beyonce","abba" , "maddonna"];
+        dashes = ["*******", "****", "********"];
+        
+        word1 = words[Math.floor(Math.random()*words.length)];
+        if (word1.length==7)
+            {dashes=dashes[0];
+            document.getElementById("numChar").innerHTML = dashes;
+        }
+        else if (word1.length==4)
+            {dashes=dashes[1];
+            document.getElementById("numChar").innerHTML = dashes;
+        }
+        else if (word1.length==8)
+            {dashes=dashes[2];
+            document.getElementById("numChar").innerHTML = dashes;
+        }
+          console.log(dashes);
+          console.log("brand new word: " + word1);
+        }
 
-      //start new game
 
-      //new word
+      else if (guessedWord.length<=word1.length && RemGuess==0)  {  
+        document.getElementById("gamesWon").innerHTML = counter;
+        alert("You lost!");
 
-      newWord();
+        //Reset function
 
-      console.log("brand new word" + newWord);
+        userGuess = "";
+        lettersGuessed =[]; //array of correct guesses
+        guessedWord = []; //array ....
+        correctLetters = []; // array of correct guess for display purpose
+        wrongLetters = [];  //array of incorrect guesses
+        dashes = []; // display of the word
+        RemGuess = 15; //remaining guesses
+        index =0;
+        indexRepeat=0;
+        document.getElementById("demo").innerHTML = RemGuess;
+        document.getElementById("incLetters").innerHTML = "";
+        document.getElementById("corLetters").innerHTML = "";
 
-      //RESET
+        
+        console.log("index = " + index);
+        console.log("indexRepeat = " + indexRepeat); 
+        console.log("Letters guessed :" + userGuess);
+        console.log("Remaining guesses: "+ RemGuess);
 
-      RemGuess = 15;
-      document.getElementById("demo").innerHTML = RemGuess;
-      document.getElementById("incLetters").innerHTML = "";
-      document.getElementById("corLetters").innerHTML = "";
+        //Get a new word 
 
-    }   
-    
-  };
+        //This function picks a new word
+      
+        words = ["beyonce","abba" , "maddonna"];
+        dashes = ["*******", "****", "********"];
+        
+        word1 = words[Math.floor(Math.random()*words.length)];
+        if (word1.length==7)
+            {dashes=dashes[0];
+            document.getElementById("numChar").innerHTML = dashes;
+        }
+        else if (word1.length==4)
+            {dashes=dashes[1];
+            document.getElementById("numChar").innerHTML = dashes;
+        }
+        else if (word1.length==8)
+            {dashes=dashes[2];
+            document.getElementById("numChar").innerHTML = dashes;
+        }
+          console.log(dashes);
+          console.log("brand new word: " + word1);
+               
 
-    
+      } 
+
+    };
+  
   </script>
 
 </body>
