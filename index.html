@@ -18,14 +18,11 @@
 
 <body>
 
-
-
-
   <div class="container">
 
       <div class="row"> 
 
-        <!-- Main Section-->
+        <!-- Main Section on the left-->
 
         <div class="col-md-6">     
 
@@ -38,13 +35,12 @@
               <p class="card-text ">The Newest Version</p>
 
               <img src="assets/images/GameA.png" alt="my picture" width="400" height="400">
-   
               
             </div>
           </div>
         </div>
 
-      
+        <!-- Main Section on the right-->
         
         <div class="col-md-6"> 
 
@@ -62,7 +58,6 @@
 
 
             <div class="row justify-content-center">
-
               <div class="col-md-6">
                 <br>
                 <p class="card-text">Guess this word:</p>                
@@ -72,12 +67,10 @@
                 <br>
                 <div id="numChar"></div> 
               </div>
-
             </div>
 
 
             <div class="row justify-content-center">
-
               <div class="col-md-6">
                 <br>
                 <p class="card-text">Remaining guesses: </p> 
@@ -87,11 +80,9 @@
                 <br>
                 <div id="demo"></div> 
               </div>
-
             </div>
 
             <div class="row justify-content-center">
-
               <div class="col-md-6">
                 <br>
                 <br>
@@ -100,11 +91,9 @@
 
               <div class="col-md-6 text-center">       
               </div>
-
             </div>
 
             <div class="row justify-content-center">
-
               <div class="col-md-6">
                 <br>
                 <p class="card-text">Correct guesses: </p>
@@ -114,12 +103,10 @@
                 <br>
                 <div id="corLetters"></div>        
               </div>
-
             </div>
 
 
             <div class="row justify-content-center">
-
               <div class="col-md-6">
                 <br>
                 <p class="card-text">Incorrect guesses: </p>   
@@ -129,12 +116,10 @@
                 <br>
                 <div id="incLetters"></div>
               </div>
-
             </div>
 
 
             <div class="row justify-content-center">
-
               <div class="col-md-6">
                 <br>
                 <br>
@@ -147,13 +132,7 @@
                 <br>
                 <div id="gamesWon"></div>
               </div>
-
-            </div> 
-
-            <!--
-            
-
-            <div id=“notification”></div -->   
+            </div>   
 
           </div>
 
@@ -164,36 +143,17 @@
   </div>
 
 
-
-
-
   <script type="text/javascript">
 
     var userGuess;
     var lettersGuessed =[]; //array of correct guesses
-    var guessedWord = []; //array ....
-    var correctLetters = []; // array of correct guess for display purpose
+    var guessedWord = []; //array of correct guesses with repeat letters
+    var correctLetters = []; // array of correct guesses for display purpose (no repeat letters)
     var wrongLetters = [];  //array of incorrect guesses
     var dashes = []; // display of the word
     var RemGuess = 15; //remaining guesses
     var counter = 0;
-    /*
-    function reset(){
 
-      userGuess = "";
-      lettersGuessed =[]; //array of correct guesses
-      guessedWord = []; //array ....
-      correctLetters = []; // array of correct guess for display purpose
-      wrongLetters = [];  //array of incorrect guesses
-      dashes = []; // display of the word
-      RemGuess = 15; //remaining guesses
-      index =0;
-      indexRepeat=0;
-      document.getElementById("demo").innerHTML = RemGuess;
-      document.getElementById("incLetters").innerHTML = "";
-      document.getElementById("corLetters").innerHTML = "";
-    };
-    */ 
     
       //This function picks a new word
       
@@ -204,30 +164,23 @@
       word1 = words[Math.floor(Math.random()*words.length)];
 
       if (word1.length==9)
-
-          {dashes=dashes[0];
-          document.getElementById("numChar").innerHTML = dashes;
+        {dashes=dashes[0];
+        document.getElementById("numChar").innerHTML = dashes;
       }
 
       else if (word1.length==7)
-
-          {dashes=dashes[1];
-          document.getElementById("numChar").innerHTML = dashes;
+        {dashes=dashes[1];
+        document.getElementById("numChar").innerHTML = dashes;
       }
 
       else if (word1.length==5)
-
-          {dashes=dashes[2];
-          document.getElementById("numChar").innerHTML = dashes;
+        {dashes=dashes[2];
+        document.getElementById("numChar").innerHTML = dashes;
       }
-
-        console.log(dashes);
         console.log("brand new word: " + word1);
       
       
-
-      
-    // This function is run whenever the user presses a key.
+      // This function is run whenever the user presses a key.
 
       document.onkeyup = function(event) {
 
@@ -238,26 +191,19 @@
         return str.substr(0,index) + chr + str.substr(index+1);
       }
 
-    
-      // Determines which key was pressed.
       userGuess = event.key.toLowerCase();
 
       var index = word1.indexOf(userGuess);
       var indexRepeat = word1.indexOf(userGuess, index+1);
 
       RemGuess=RemGuess-1;
-
-      console.log("index = " + index);
-      console.log("indexRepeat = " + indexRepeat); 
-      console.log("Letters guessed :" + userGuess);
-      console.log("Remaining guesses: "+ RemGuess);
       
       //List of available letters 
 
       var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", 
         "v", "w", "x", "y", "z"];
 
-      //user must use a letter from the alphabet
+      //User must choose a letter from the alphabet
 
       if (alphabet.indexOf(userGuess) <=-1 ) {
         alert("Please enter a letter");
@@ -275,8 +221,7 @@
             wrongLetters.push(userGuess);
             document.getElementById("incLetters").innerHTML = wrongLetters.join("");
             document.getElementById("demo").innerHTML = RemGuess;
-          }
-      
+          }  
         }
 
         else {
@@ -290,12 +235,7 @@
 
           //Array of correct letters
           lettersGuessed[index] = userGuess;
-
-          console.log("lettersGuessed[index]=" + lettersGuessed[index]);
-
           dashes = setCharAt(dashes, index, userGuess);
-
-          console.log("dashes " + dashes);
 
           //Array of correct letters created for display purposes:
           correctLetters.push(userGuess);
@@ -308,38 +248,26 @@
 
             //Now searching for repeated letters
 
-
             if (word1.indexOf(userGuess, index+1)!=-1) {
 
               alert("There is a second letter " + event.key.toUpperCase());
-
               lettersGuessed[indexRepeat] = userGuess;
-
               dashes = setCharAt(dashes, indexRepeat, userGuess);
-
-              console.log("Letter " + dashes[indexRepeat]+" at location " + indexRepeat);
-
               guessedWord.push(userGuess);
-             
+              console.log("Letter " + dashes[indexRepeat]+" at location " + indexRepeat);
+            
             }
 
             //Important! change from dashes to letter
 
             document.getElementById("numChar").innerHTML = dashes;
-
             document.getElementById("demo").innerHTML = RemGuess;
-                
-            console.log("User guessed right");
-
-            console.log("Number of lettersGuessed  =" + guessedWord.length);
-    
-          }    
-        
-        }
-      
+          }           
+        }     
       }  
 
-  
+      // WIN EVENT
+      //_______________________________________________________
 
       if (guessedWord.length==word1.length && RemGuess>=0) {
 
@@ -362,17 +290,10 @@
         document.getElementById("incLetters").innerHTML = "";
         document.getElementById("corLetters").innerHTML = "";
 
-        
-        console.log("index = " + index);
-        console.log("indexRepeat = " + indexRepeat); 
-        console.log("Letters guessed :" + userGuess);
-        console.log("Remaining guesses: "+ RemGuess);
-
         //Get a new word 
 
         //This function picks a new word
       
-       
 
         words = ["jenniferl", "beyonce","adele"];
         dashes = ["*********","*******", "*****"];
@@ -390,13 +311,12 @@
             {dashes=dashes[2];
             document.getElementById("numChar").innerHTML = dashes;
         }
-          console.log(dashes);
           console.log("brand new word: " + word1);
         }
 
+      // LOSS EVENT
 
-
-
+      //___________________________________________________________
 
       else if (guessedWord.length<=word1.length && RemGuess==0)  {  
         document.getElementById("gamesWon").innerHTML = counter;
@@ -417,17 +337,10 @@
         document.getElementById("incLetters").innerHTML = "";
         document.getElementById("corLetters").innerHTML = "";
 
-        
-        console.log("index = " + index);
-        console.log("indexRepeat = " + indexRepeat); 
-        console.log("Letters guessed :" + userGuess);
-        console.log("Remaining guesses: "+ RemGuess);
-
         //Get a new word 
 
         //This function picks a new word
       
-
 
         words = ["jenniferl", "beyonce","adele"];
         dashes = ["*********","*******", "*****"];
@@ -435,28 +348,23 @@
         word1 = words[Math.floor(Math.random()*words.length)];
 
         if (word1.length==9)
-
             {dashes=dashes[0];
             document.getElementById("numChar").innerHTML = dashes;
         }
 
         else if (word1.length==7)
-
             {dashes=dashes[1];
             document.getElementById("numChar").innerHTML = dashes;
         }
 
         else if (word1.length==5)
-
             {dashes=dashes[2];
             document.getElementById("numChar").innerHTML = dashes;
         }
 
-          console.log(dashes);
           console.log("brand new word: " + word1);
                  
       } 
-
     };
   
   </script>
